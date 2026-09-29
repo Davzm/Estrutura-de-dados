@@ -1,0 +1,131 @@
+Arquivos [.h]
+
+separar interface da implementação >> Semelhante a Java
+
+< TIPO ABSTRATO DE DADOS (TAD)>{
+    encapsulamento
+    em C não há a palavra private, então o encapsulamento precisa ser feito de outra maneira
+
+
+    <Exemplo>{
+        #ifndef PONTO_H
+
+        #define PONTO_H
+
+        /* o cliente conhece o nome do tipo,
+
+        nunca o seu corpo */
+
+        typedef struct ponto Ponto;
+
+        Ponto *criarPonto(float x, float y);
+
+        void liberarPonto(Ponto *p);
+
+        int lerPonto(Ponto *p, float *x, float *y);
+
+        int atribuirPonto(Ponto *p, float x, float y);
+
+        float distancia(Ponto *p, Ponto *q);
+
+        #endif
+    }
+
+    Quatro famílias básicas de operação(
+        Construtor
+        Destrutor
+        Consulta
+        Modificação
+    )
+
+    O que o compilador proíbe dentro da main(
+        Ponto p; >> storage size of 'p' isn't known
+
+        p->x = 2.0f; >> invalid use of incomplete typedef 'Ponto'
+
+        sizeof(Ponto); >> invalid application of 'sizeof' to incomplete type
+    )
+
+    Por que o ponteiro ainda funciona(
+        todo ponteiro tem o mesmo tamanho, independente do que existe no destino
+
+        Regra prática(
+            Um TAD opaco em C é sempre manipulado por ponteiro, nunca por valor.
+        )
+    )
+
+    <Onde mora a definição>{
+        #include <stdlib.h>
+
+        #include <math.h>
+
+        #include "ponto.h"
+
+        /* o corpo do struct existe aqui, e so aqui */
+
+        struct ponto {
+            float x;
+            float y;
+        };
+
+        Ponto *criarPonto(float x, float y) {
+
+            Ponto *p = malloc(sizeof(Ponto));
+            if (p == NULL) {
+            return NULL; // sem memoria disponivel
+            }
+
+            p->x = x;
+            p->y = y;
+            return p;
+        }
+
+    }
+
+    <Consulta e Modificação>{
+        int lerPonto(Ponto *p, float *x, float *y) {
+            if (p == NULL) return 0;
+            *x = p->x;
+            *y = p->y;
+            return 1;
+
+        }
+
+        int atribuirPonto(Ponto *p, float x, float y) {
+            if (p == NULL) return 0;
+            p->x = x;
+            p->y = y;
+            return 1;
+        }
+
+    }
+
+    <Domínio e Destrutor>{
+        float distancia(Ponto *p, Ponto *q) {
+
+            float dx, dy;
+
+            if (p == NULL || q == NULL) return -1.0f;
+
+            dx = p->x - q->x;
+
+            dy = p->y - q->y;
+
+            return sqrtf(dx * dx + dy * dy);
+
+        }
+
+        void liberarPonto(Ponto *p) {
+
+            free(p); // free(NULL) e seguro
+
+        }
+
+    }
+
+    
+
+}
+
+
+

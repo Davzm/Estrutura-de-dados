@@ -1,0 +1,53 @@
+-- Lista{
+    >> estrutura de dados linear 
+    >> armazena sequência finita de elementos do mesmo tipo
+
+    Estática{
+        Alocação em tempo de compilação
+    }
+
+    Dinâmica{
+        Alocação em tempo de execução
+    }
+
+    Acesso Sequencial{
+        >> Elementos em posição consecutivas de memória
+    }
+
+    Acesso Encadeado{
+        >> Cada local de memória tem o dado e um ponteiro para a próxima posição da lista
+    }
+
+	-- Lista Convencional{
+    >> permite inserir e remover itens em qualquer posição
+	}
+
+	-- Fila{
+		>> FIFO
+		>> Inserção apenas no final
+		>> Acessa e remove do início
+	}
+
+	-- Pilha{
+		>> LIFO
+		>> Insere, acessa e remove apenas no final
+	}
+
+	-- Inserção{
+		>> No início --> Precisa deslocar todos os elementos uma posição à frente
+		>> No final --> Não desloca elementos
+		>> No meio --> Precisa deslocar alguns elementos
+	}
+
+	-- Remoção{
+		>> No início --> Precisa deslocar todos os elementos uma posição para trás
+		>> No final --> Não desloca nada; precisa apenas decrementar a quantidade de elementos da lista
+		>> No meio -->  Precisa deslocar alguns elementos
+
+		Remoção 'otimizada' 
+			>> Se a ordem dos elementos não importa, podemos apenas pegar o último elemento e deslocá-lo 
+			para o local do item removido
+	}
+
+}
+

@@ -1,0 +1,62 @@
+-- ANÁLISE DE ALGORITMOS --
+
+>> Contar as instruções que um trecho de código em C executa, em função do tamanho da entrada n.
+>> Identificar o melhor e o pior caso de um algoritmo e justificar a adoção do pior caso como referência.
+>> Expressar o custo com as notações O, Ω e Θ, descartando constantes e termos de menor ordem.
+>> Comparar algoritmos pela ordem de crescimento, como a busca sequencial e a busca binária.
+
+
+Exemplo de motivação{
+    (Solução 1):
+
+        long long somaLaco(long long n) {
+        long long s = 0;
+        for (long long k = 1; k <= n; k++)
+            s += k;
+        return s;
+        
+        #qunatidade de operações é igual a n
+    }
+
+    
+
+    (Solução 2):
+
+        long long somaFormula(long long n) {
+        return n * (n + 1) / 2;
+
+        #quantidade de operações é fixa (3)
+    }
+}
+
+-- custo = memoria + tempo
+
+-- Anáalise assintótica
+    >> análise de dominância
+
+    >> h(m) domina g(m) assintoticamente #quando h(m) tem tempo de execução sempre(?) maior que g(m)
+
+    f(n) = 105
+    >> g(n) = 1 --> (1)
+
+    f(n) = 15n + 2
+    >> g(n) = 16n --> (n)
+
+    f(n) = n² + 5n + 2
+    >> g(n) = 2n² --> (n²)
+
+    f(n) = 5n³ + 200n² + 112
+    >> g(n) = 6n³ --> (n³)
+
+
+-- Notação O (limite assintótico superior)
+    f(n) é O(g(n)) se existem constantes positivas c e n₀ tais que 
+    f(n) ≤ c · g(n)   para todo n ≥ n₀
+
+    >>  A partir de n₀, f não ultrapassa um múltiplo de g.
+    >> O(n²) indica custo, no máximo, da ordem de n².
+    >> No exemplo ao lado, 4n + 3 ≤ 5n para n ≥ 3; logo, c = 5 e n₀ = 3.
+
+    >> O(n) #algoritmo linear
+    >>
+

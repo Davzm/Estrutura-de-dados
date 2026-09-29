@@ -1,0 +1,107 @@
+CASOS CONSTANTES COM PONTEIROS
+
+-- CASO 1 --
+
+const int *p    /*ponteiro para dado constante*/
+
+-- CASO 2 --
+
+int *const p = &x       /*ponteiro constante; Sempre aponta para o mesmo local de memória*/
+
+-- CASO 3 --
+
+const int *const p = &x     /*ponteiro constante para dado constante*/
+
+
+DEFININDO TIPOS COMPLEXOS COM ❮STRUCT❯
+
+struct aluno{
+    int matricula;      
+    char nome [32];     //um único dado composto
+    float media;
+};
+
+struct aluno a;
+
+--- 40 bytes de alocação por aluno ---
+
+
+typedef struct aluno{
+    int matricula;
+    char nome [32];
+    float media;
+} Aluno;
+
+Aluno a;
+a.matricula...;
+
+-----------------------
+
+void zerarMedia(Aluno *p){
+    p -> media = 0;  //altera o valor da variável
+}
+
+int main(void){
+    Aluno m = (20319904, "Marina", 8.7);
+    zerarMedia(m);
+    printf("%1.f\n", m.media);
+}
+
+------------------------
+
+
+*PASSAR UMA STRUCT POR VALOR COPIA A STRUCT INTEIRA*
+
+
+O PROBLEMA DA MEMÓRIA ESTÁTICA
+
+typedef struct{
+    int matricula;
+    char nome[100];
+    float media;
+} Aluno; //100 bytes por aluno
+
+
+MEMÓRIA HEAP
+
+-- alocação sob demanda --
+>   Permite alocar exatamente a quantidade de espaço necessário em tempo de execução
+
+
+-- Sobrevivência ao escopo
+>   Os dados criados no Heap permanecem vivos mesmo após o término da função
+
+-- Estrutura Gigantes --
+>   Ideal para... (não consegui copiar)
+
+
+
+----------------------- STACK           VS        HEAP -----------------------
+quem cria o espaço      compilador                você (malloc)
+quem destroi o espaço   compilador                você (free)
+tamanho                 fixado em copilação       decidido em execução
+tempo de vida           do escopo da função       até chegar no free
+se vc esquecer          nada, é automático        o bloco vaza (memory leak)
+
+---------------------------------------------------------------------------------
+
+Alnuno *p = malloc(sizeof(Aluno));
+if(p == NULL){
+    return 1;   //nao ha memoria disponivel
+}
+
+p-> matricula = 20381084;
+p-> media = 8.7;
+
+free(p);
+p = NULL;
+
+
+-------- malloc; callor; realloc; free --------
+
+Aluno *p = malloc(sizeof(Aluno*))
+
+Aluno *p = malloc(sizeof(*p))   //melhor prática, pois garante mais reusabilidade
+
+--------- desalocar na ordem inversa da alocação ---------
+
