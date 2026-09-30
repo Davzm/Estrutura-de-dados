@@ -11,7 +11,7 @@ struct produto {
 
 typedef struct lista Lista;
 
-/* já implementadas (fornecidas pelo professor) */
+/* já implementadas*/
 Lista *cria_lista();
 void   libera_lista(Lista *li);
 int    busca_lista_pos(Lista *li, int pos, struct produto *p);
