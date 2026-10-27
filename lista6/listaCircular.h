@@ -141,5 +141,7 @@ int rotaciona_lista(Lista* li, int k);
 
 int concatena_listas(Lista* li1, Lista* li2);
 
+int josephus(Lista* li, int k, int *sobrevivente);
+
 
 #endif /* LISTA_DIN_ENCAD_CIRC_H */

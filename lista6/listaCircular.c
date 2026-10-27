@@ -299,7 +299,7 @@ int maior_matricula(Lista* li, int *mat){
 }
 
 /*
-Não testa se a lista é vazia. Se for, o laço vai falhar na primeira iteração
+Não testa se a lista é válida. Se li == NULL, vai gerar segmentation fault
 
 o laço while vai entrar em loop infinito, pois no nunca vai ser NULL, visto que
 o último no aponta para o primeiro. (considerando uma lista não vazia)
@@ -359,10 +359,13 @@ int remove_lista_pos(Lista* li, int pos){
 }
 
 /*
-1) O custo para k pequeno é O(k), que, no pior caso é O(k-1) = O(n)
+1) O custo geral é O(k mod n), no pior caso, n-1 avanços, ou seja, O(n). Como a função pode parar antes de chegar no último elemento, um k pequeno vai gerar 
+menos interações necessárias
 
-2) Seria necessário achar o último no e o no na posição k, fazer o último apontar para o antigo primeiro, fazer o no da posição k apontar para NULL e fazer *li apontar para k+1
+2) Seria necessário achar o último no e o no na posição k, fazer o último apontar para o antigo primeiro, fazer o no da posição k apontar para NULL e fazer 
+*li apontar para k+1. O custo seria sempre O(n), visto que sempre é necessário percorrer a lista inteira.
 */
+
 int rotaciona_lista(Lista* li, int k){
     if(li == NULL || *li == NULL || k < 0) return 0;
 
@@ -380,8 +383,9 @@ int rotaciona_lista(Lista* li, int k){
 /*
 O custo passaria a ser O(1), pois não seria necessário percorrer a lista até chegar no último elemento, e só então religar os ponteiros. 
 */
+
 int concatena_listas(Lista* li1, Lista* li2){
-    if(li1 == NULL || li2 == NULL) return 0;
+    if(li1 == NULL || li2 == NULL || li1 == li2) return 0;
     if(*li2 == NULL)return 1;
 
     if(*li1 == NULL){
@@ -409,6 +413,40 @@ int concatena_listas(Lista* li1, Lista* li2){
     return 1;
 }
 
+int josephus(Lista* li, int k, int *sobrevivente){
+    if(li == NULL || *li == NULL || k < 1) return 0;
+
+    /*if(tamanho_lista(li) == 1){
+        Elem *no = *li;
+        *sobrevivente = no->dados.matricula;
+        free(no);
+        *li = NULL;
+        return 1;
+    }
+    */
+    
+    Elem *ant = *li;
+    while(ant->prox != *li) ant = ant->prox;
+
+
+    while(ant->prox != ant){
+        Elem *no = ant->prox;
+
+        for(int i = 1; i < k; i++){
+            ant = no;
+            no = no->prox;
+        }
+        
+        ant->prox = no->prox;
+        free(no);
+    }
+
+    *sobrevivente = ant->dados.matricula;
+    free(ant);
+    *li = NULL;
+
+    return 1;
+}
 
 
 
@@ -420,8 +458,15 @@ pos = 3
 {1,2,4,5}
 2 -> 4
 
+{1,2,3,4,5,6,7}
+k = 3
 
-
+{1,2,4,5,6,7}
+{1,2,4,5,7}
+{1,4,5,7}
+{1,4,5}
+{1,4}
+{1}
 */
 
 
