@@ -358,19 +358,63 @@ int remove_lista_pos(Lista* li, int pos){
     return 1;
 }
 
+/*
+1) O custo para k pequeno é O(k), que, no pior caso é O(k-1) = O(n)
+
+2) Seria necessário achar o último no e o no na posição k, fazer o último apontar para o antigo primeiro, fazer o no da posição k apontar para NULL e fazer *li apontar para k+1
+*/
 int rotaciona_lista(Lista* li, int k){
     if(li == NULL || *li == NULL || k < 0) return 0;
 
     Elem *no = *li;
+    int condicao_parada = k % tamanho_lista(li);
 
+    for(int i = 0; i < condicao_parada; i++){
+        no = no->prox;
+    }
+
+    *li = no; 
+
+    return 1;
+}
+/*
+O custo passaria a ser O(1), pois não seria necessário percorrer a lista até chegar no último elemento, e só então religar os ponteiros. 
+*/
+int concatena_listas(Lista* li1, Lista* li2){
+    if(li1 == NULL || li2 == NULL) return 0;
+    if(*li2 == NULL)return 1;
+
+    if(*li1 == NULL){
+        *li1 = *li2;
+        *li2 = NULL;
+        return 1;
+    }
+
+    Elem *no1 = *li1;
+    
+
+    while(no1->prox != *li1){
+        no1 = no1->prox;
+    }
+    
+    Elem *no2 = *li2;
+    
+    while(no2->prox != *li2){
+        no2 = no2->prox;
+    }
+
+    no1->prox = *li2;
+    no2->prox = *li1;
+    *li2 = NULL;
     return 1;
 }
 
 
 
+
 /*
 
-{1,2,3,4,5}
+{1,2,3,4,5} k = 10
 
 pos = 3
 {1,2,4,5}

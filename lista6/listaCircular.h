@@ -139,5 +139,7 @@ int remove_lista_pos(Lista* li, int pos);
 
 int rotaciona_lista(Lista* li, int k);
 
+int concatena_listas(Lista* li1, Lista* li2);
+
 
 #endif /* LISTA_DIN_ENCAD_CIRC_H */
