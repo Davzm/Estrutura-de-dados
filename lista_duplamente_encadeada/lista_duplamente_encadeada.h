@@ -122,5 +122,11 @@ void imprime_lista_inversa(Lista* li);
 
 int lista_consistente(Lista* li);
 
+int remove_lista_corrigida(Lista* li, int mat);
+
+int remove_lista_pos(Lista* li, int pos);
+
+int move_para_inicio(Lista* li, int mat);
+
 
 #endif /* LISTA_DIN_ENCAD_DUPLA_H */

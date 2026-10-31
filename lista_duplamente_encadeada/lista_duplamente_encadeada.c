@@ -231,17 +231,17 @@ O custo é O(n), visto que é sempre preciso percorrer a lista duas vezes (2n), 
 */
 void imprime_lista_inversa(Lista* li){
     if(li == NULL || *li == NULL){
-        puts("lista vazia");
+        puts("(lista vazia)");
         return;
     }
 
     Elem *no = *li;
-    no->ant = no;
-    no = no->prox;
-
-    while(no->prox != *li){ 
+    while(no->prox != NULL){ 
         no = no->prox;
     }
+
+    printf("%d", no->dados.matricula); //evita o espaço extra ao final da lista
+    no = no->ant;
 
     while(no != NULL){
         printf("%d ", no->dados.matricula);
@@ -253,12 +253,82 @@ void imprime_lista_inversa(Lista* li){
 
 int lista_consistente(Lista* li){
     if(li == NULL) return 0;
+    if(*li == NULL) return 1;
+    if((*li)->ant != NULL) return 0;
 
     Elem *no = *li;
-
-    if(no->ant == !NULL) return 0;
-    if(no->prox->ant != no) return 0;
+    while(no->prox != NULL){
+        if(no->prox->ant != no) return 0;
+        no = no->prox;
+    }
 
     return 1;
 }
+
+/*
+A) o código não vai remover o 33, pois vai tentar fazer NULL apontar para o novo primeiro elemento, gerando segmentation fault
+
+B) 33 ⇄ 23 ⇄ 16
+    33 ant = NULL; 33 prox = 16; 16 ant = (endereço já liberado de 23); 16 prox = NULL
+
+    Como tamanho_lista percorre a lista do primeiro ao último elemento, ela devolve o tamanho correto (2), visto que 33 aponta corretamente para 16.
+    No entanto, lista_consistente retorna 0, pois no->prox->ant != no, visto que 16 não aponta de volta da 33
+*/
+
+
+int remove_lista_corrigida(Lista* li, int mat){
+    if(li == NULL) return 0;
+    if((*li) == NULL) return 0;
+    Elem* no = *li;
+
+    while(no != NULL && no->dados.matricula != mat){
+        no = no->prox;
+    }
+    if(no == NULL) return 0;
+    
+    if(no->ant == NULL){
+        *li = no->prox;
+    }else{
+        no->ant->prox = no->prox;
+    }
+
+    if(no->prox != NULL){
+        no->prox->ant = no->ant;
+    }
+    free(no);
+    return 1;
+}
+
+//posição 1 = primeiro elemento
+//testar remoção da primeira posição, posição intermediária e última
+int remove_lista_pos(Lista* li, int pos){
+    if(li == NULL || *li == NULL) return 0;
+    if(pos > tamanho_lista(li) || pos <= 0) return 0;
+    if(lista_consistente(li) == 0) return 0;
+
+    Elem *no = *li;
+    for(int i = 1; i < pos; i++){
+        no = no->prox;
+    }
+
+    if(no->ant == NULL){
+        *li = no->prox;
+    }else{
+        no->ant->prox = no->prox;
+    }
+
+    if(no->prox != NULL){
+        no->prox->ant = no->ant;
+    }
+
+    free(no);
+    return 1;
+}
+
+int move_para_inicio(Lista* li, int mat){
+    
+}
+
+
+
 
