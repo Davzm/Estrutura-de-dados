@@ -37,7 +37,7 @@
 #define TESTA_Q4 1   /* remove_lista_pos                            */
 #endif
 #ifndef TESTA_Q5
-#define TESTA_Q5 0   /* move_para_inicio                            */
+#define TESTA_Q5 1   /* move_para_inicio                            */
 #endif
 #ifndef TESTA_Q6
 #define TESTA_Q6 0   /* remove_todos                                */

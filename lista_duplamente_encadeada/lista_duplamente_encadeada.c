@@ -326,9 +326,47 @@ int remove_lista_pos(Lista* li, int pos){
 }
 
 int move_para_inicio(Lista* li, int mat){
-    
+    if(li == NULL || *li == NULL) return 0;
+    if(lista_consistente(li) == 0) return 0;
+
+    Elem *no = *li;
+    Elem *aux = *li;
+
+    if(no->dados.matricula == mat) return 1;
+
+    while(no->dados.matricula != mat && no->prox != NULL){
+        no = no->prox;
+    }
+    if(no->dados.matricula != mat) return 0;
+
+    no->ant->prox = no->prox;
+    if(no->prox != NULL){
+        no->prox->ant = no->ant;
+    }
+
+    no->prox = aux;
+    no->ant = NULL;
+    aux->ant = no;
+    *li = no;
+    return 1;
 }
 
 
+/*
 
+{1,2,3,4,5}
+mat = 3
+
+1 ⇆ 2 ⇆ '3' ⇆ 4 ⇆ 5 
+1 -> 2 -> 4 -> 5 
+1 <- 2 <- 3 <- 4 <- 5
+
+1 ⇆ 2 ⇆ 3 ⇆ '4' ⇆ 5 
+4 -> 1 ⇆ 2 ⇆ 3 ⇆ 5 
+
+
+
+3 ⇆ 1 ⇆ 2 ⇆ 4 ⇆ 5 
+
+*/
 
