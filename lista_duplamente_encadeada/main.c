@@ -46,7 +46,7 @@
 #define TESTA_Q7 1   /* inverte_lista                               */
 #endif
 #ifndef TESTA_Q8
-#define TESTA_Q8 0   /* eh_palindromo                               */
+#define TESTA_Q8 1   /* eh_palindromo                               */
 #endif
 
 static int total = 0, falhas = 0;

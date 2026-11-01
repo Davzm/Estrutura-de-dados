@@ -413,7 +413,29 @@ void inverte_lista(Lista* li){
 }
 
 int eh_palindromo(Lista* li){
-    
+    if(li == NULL) return 0;
+    if(*li == NULL) return 1;
+    int tamanho = tamanho_lista(li);
+    int condicao_parada;
+
+    if(tamanho % 2 == 0){ 
+        condicao_parada = tamanho / 2;
+    }else{
+        condicao_parada = (tamanho + 1) / 2;
+    }
+
+
+    Elem *aux = *li;
+    while(aux->prox != NULL) aux = aux->prox;
+
+    Elem *no = *li;
+    //{1,2,3,4,5,6,7}
+    for(int i = 0; i < condicao_parada; i++){
+        if(no->dados.matricula != aux->dados.matricula) return 0;
+        no = no->prox;
+        aux = aux->ant;
+    }
+    return 1;
 }
 
 
