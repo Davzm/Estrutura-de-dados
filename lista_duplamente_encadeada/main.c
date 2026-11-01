@@ -43,7 +43,7 @@
 #define TESTA_Q6 1   /* remove_todos                                */
 #endif
 #ifndef TESTA_Q7
-#define TESTA_Q7 0   /* inverte_lista                               */
+#define TESTA_Q7 1   /* inverte_lista                               */
 #endif
 #ifndef TESTA_Q8
 #define TESTA_Q8 0   /* eh_palindromo                               */

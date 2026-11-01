@@ -130,5 +130,9 @@ int move_para_inicio(Lista* li, int mat);
 
 int remove_todos(Lista* li, int mat);
 
+void inverte_lista(Lista* li);
+
+int eh_palindromo(Lista* li);
+
 
 #endif /* LISTA_DIN_ENCAD_DUPLA_H */

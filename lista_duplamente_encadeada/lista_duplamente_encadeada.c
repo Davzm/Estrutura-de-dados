@@ -354,6 +354,7 @@ int move_para_inicio(Lista* li, int mat){
 
 int remove_todos(Lista* li, int mat){
     if(li == NULL || *li == NULL) return 0;
+    if(lista_consistente(li) == 0) return 0;
     int ocorrencias = 0;
     bool condicao_parada = true;
 
@@ -369,7 +370,7 @@ int remove_todos(Lista* li, int mat){
             condicao_parada = false;
             break;
         }
-        aux = no->prox;
+        aux = no->prox; //guarda o endereço do próximo no para ser possível continuar a ler a lista após free(no)
 
         if(no->ant == NULL){
             *li = no->prox;
@@ -388,6 +389,31 @@ int remove_todos(Lista* li, int mat){
     }
     
     return ocorrencias;
+}
+
+void inverte_lista(Lista* li){
+    if(li == NULL) return;
+    if(lista_consistente(li) == 0) return;
+    if(lista_vazia(li) == 1) return;
+    if(tamanho_lista(li) == 1) return;
+
+    int condicao_parada = tamanho_lista(li);
+    Elem *no = *li;
+    Elem *aux = NULL;
+
+    for(int i = 0; i < condicao_parada; i++){
+        aux = no->prox;
+        no->prox = no->ant;
+        no->ant = aux;
+        if(aux != NULL)no = aux;
+    }
+
+    *li = no;
+
+}
+
+int eh_palindromo(Lista* li){
+    
 }
 
 
