@@ -166,7 +166,7 @@ static void testa_q2(void) {
     confere("remove inicio: consistente", lista_consistente(li), 1);
     remove_lista_final(li);
     confere("remove final: consistente", lista_consistente(li), 1);
-    remove_lista(li, 20);
+    remove_lista_corrigida(li, 20);
     confere("remove do meio: consistente", lista_consistente(li), 1);
     libera_lista(li);
 }

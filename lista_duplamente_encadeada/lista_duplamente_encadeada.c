@@ -241,7 +241,7 @@ void imprime_lista_inversa(Lista* li){
         no = no->prox;
     }
 
-    printf("%d", no->dados.matricula); //evita o espaço extra ao final da lista
+    printf("%d ", no->dados.matricula); //evita o espaço extra ao final da lista
     no = no->ant;
 
     while(no != NULL){
@@ -302,10 +302,10 @@ int remove_lista_corrigida(Lista* li, int mat){
 
 //posição 1 = primeiro elemento
 //testar remoção da primeira posição, posição intermediária e última
+// custo = O(n)
 int remove_lista_pos(Lista* li, int pos){
     if(li == NULL || *li == NULL) return 0;
     if(pos > tamanho_lista(li) || pos <= 0) return 0;
-    if(lista_consistente(li) == 0) return 0;
 
     Elem *no = *li;
     for(int i = 1; i < pos; i++){
@@ -326,9 +326,10 @@ int remove_lista_pos(Lista* li, int pos){
     return 1;
 }
 
+//quando está no final é um a menos que no meio, pois 
+
 int move_para_inicio(Lista* li, int mat){
     if(li == NULL || *li == NULL) return 0;
-    if(lista_consistente(li) == 0) return 0;
 
     Elem *no = *li;
     Elem *aux = *li;
@@ -354,7 +355,6 @@ int move_para_inicio(Lista* li, int mat){
 
 int remove_todos(Lista* li, int mat){
     if(li == NULL || *li == NULL) return 0;
-    if(lista_consistente(li) == 0) return 0;
     int ocorrencias = 0;
     bool condicao_parada = true;
 
@@ -391,9 +391,13 @@ int remove_todos(Lista* li, int mat){
     return ocorrencias;
 }
 
+//custo = n (função principal) + n (tamanho_lista) = 2n = O(n)
+/*
+trocar os campos ant e prox é suficiente, pois os elementos vão continuar apontando para os 
+mesmos outros elementos que apontavam antes, apenas de forma invertida*/
+
 void inverte_lista(Lista* li){
     if(li == NULL) return;
-    if(lista_consistente(li) == 0) return;
     if(lista_vazia(li) == 1) return;
     if(tamanho_lista(li) == 1) return;
 
@@ -412,6 +416,10 @@ void inverte_lista(Lista* li){
 
 }
 
+
+// custo = 1,5n (função principal) + n (tamanho_lista) = 2,5n = O(n)
+// Não funciona para a lista encadeada simples, pois não existe o campo ant. 
+//Então percorrer a lista de trás para frente precisaria ser feita de outra maneira
 int eh_palindromo(Lista* li){
     if(li == NULL) return 0;
     if(*li == NULL) return 1;
