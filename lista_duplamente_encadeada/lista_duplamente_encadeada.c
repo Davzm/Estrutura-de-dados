@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "lista_duplamente_encadeada.h"
+#include <stdbool.h>
 
 /* Definicao do tipo lista: oculta de quem usa a biblioteca.
    Com struct aluno de 48 bytes, sizeof(Elem) = 64 bytes em uma
@@ -350,6 +351,45 @@ int move_para_inicio(Lista* li, int mat){
     *li = no;
     return 1;
 }
+
+int remove_todos(Lista* li, int mat){
+    if(li == NULL || *li == NULL) return 0;
+    int ocorrencias = 0;
+    bool condicao_parada = true;
+
+    //{1,2,3,2,5} :: mat = 2 :: {1,3,5}
+
+    Elem *aux = *li;
+    while(condicao_parada == true){
+        Elem *no = aux;
+        while(no->prox != NULL && no->dados.matricula != mat){
+            no = no->prox;
+        }
+        if(no->prox == NULL && no->dados.matricula != mat){
+            condicao_parada = false;
+            break;
+        }
+        aux = no->prox;
+
+        if(no->ant == NULL){
+            *li = no->prox;
+        }else{
+            no->ant->prox = no->prox;
+        }
+
+        if(no->prox != NULL){ 
+            no->prox->ant = no->ant;
+        }else{
+            condicao_parada = false;
+        }
+        ocorrencias++;
+        free(no);
+    
+    }
+    
+    return ocorrencias;
+}
+
 
 
 /*

@@ -40,7 +40,7 @@
 #define TESTA_Q5 1   /* move_para_inicio                            */
 #endif
 #ifndef TESTA_Q6
-#define TESTA_Q6 0   /* remove_todos                                */
+#define TESTA_Q6 1   /* remove_todos                                */
 #endif
 #ifndef TESTA_Q7
 #define TESTA_Q7 0   /* inverte_lista                               */

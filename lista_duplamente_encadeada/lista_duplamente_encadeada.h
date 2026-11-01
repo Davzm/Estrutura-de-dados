@@ -128,5 +128,7 @@ int remove_lista_pos(Lista* li, int pos);
 
 int move_para_inicio(Lista* li, int mat);
 
+int remove_todos(Lista* li, int mat);
+
 
 #endif /* LISTA_DIN_ENCAD_DUPLA_H */
