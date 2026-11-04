@@ -124,3 +124,45 @@ int remove_lista_final(Lista *li){
 /*
 {1}
 */
+
+/* ============================================================
+   AUXILIARES DE TESTE
+   Ficam neste arquivo porque so aqui os campos ant e prox sao
+   visiveis (Lista e um tipo opaco). O main.c so enxerga os
+   prototipos, declarados la.
+
+   Copiam as matriculas para um vetor v (de tamanho max) e devolvem
+   quantos elementos foram percorridos. Se a lista estiver quebrada
+   (um ponteiro NULL ou um ciclo que nao fecha) elas NAO travam:
+   devolvem -1 ou um valor maior que max, e o teste acusa a falha.
+   ============================================================ */
+
+/* Ida: do primeiro ao ultimo, seguindo prox. */
+int matriculas_ida(Lista* li, int v[], int max) {
+    if (li == NULL || *li == NULL) return 0;
+    int n = 0;
+    Elem *no = *li;
+    do {
+        if (n < max) v[n] = no->dados.matricula;
+        n++;
+        no = no->prox;
+    } while (no != NULL && no != *li && n <= max);
+    if (no == NULL) return -1;          /* prox NULL: circularidade quebrada */
+    return n;
+}
+
+/* Volta: do ultimo, que e (*li)->ant, ao primeiro, seguindo ant. */
+int matriculas_volta(Lista* li, int v[], int max) {
+    if (li == NULL || *li == NULL) return 0;
+    Elem *ult = (*li)->ant;
+    if (ult == NULL) return -1;
+    int n = 0;
+    Elem *no = ult;
+    do {
+        if (n < max) v[n] = no->dados.matricula;
+        n++;
+        no = no->ant;
+    } while (no != NULL && no != ult && n <= max);
+    if (no == NULL) return -1;          /* ant NULL: circularidade quebrada */
+    return n;
+}
