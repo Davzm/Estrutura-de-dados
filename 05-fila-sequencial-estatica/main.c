@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "FilaEstatica.h"
+#include <stdbool.h>
 
 static struct aluno mk(int matricula, const char *nome) {
     struct aluno al;
@@ -27,6 +28,45 @@ static void imprime(const char *rotulo, Fila *fi) {
         printf(" %d", al.matricula);
     }
     printf("\n");
+}
+
+//{1,2,3,4,5,6,7}
+//{1,2,4,5,6,7}
+//{1,2,4,5,7}
+//{1,4,5,7}
+//{1,4,5}
+//{1,4}
+//{4}
+
+//{7}
+
+int josefo(int n, int k){
+    if(n < 1 || k < 1) return -1;
+    Fila *fi; 
+    fi = cria_Fila(n);
+    if(cria_Fila(n) == NULL) return -1; 
+    struct aluno al;
+    for(int i = 1; i <= n; i++){
+        al.matricula = i;
+        insere_Fila(fi, al);
+    }
+
+    while(tamanho_Fila(fi) > 1){
+        for(int i = 0; i < k-1; i++){
+            consulta_Fila(fi, &al);
+            remove_Fila(fi);
+            insere_Fila(fi, al);
+        }
+        consulta_Fila(fi, &al);
+        printf("Aluno de matricula %d removido\n", al.matricula);
+        remove_Fila(fi);
+
+    }
+    consulta_Fila(fi, &al);
+    int matricula = al.matricula;
+    remove_Fila(fi);
+    libera_Fila(fi);
+    return matricula;
 }
 
 int main(void) {
@@ -89,5 +129,11 @@ int main(void) {
     imprime("fura fila cheia || mat = 60", fi);
     libera_Fila(fi);
 
+    //Problema de Josefo
+    printf("Josefo(7,3): Sobrevivente é o aluno %d\n", josefo(7,3));
+    printf("Josefo(5,2): Sobrevivente é o aluno %d\n", josefo(5,2));
+    printf("Josefo(1,4): Sobrevivente é o aluno %d\n", josefo(1,4));
+    printf("Josefo(6,1): Sobrevivente é o aluno %d\n", josefo(6,1));
+    printf("Josefo(0,-1): Sobrevivente é o aluno %d (esperado -1)\n", josefo(0,-1));
     return 0;
 }

@@ -30,13 +30,19 @@ B)
     [3, 9, 7, 6]
     a3
 
-C) os campos 0 e 1 são sobrescritos, por causa de a5 e a8 que são removidos. 
+C) os campos 0 e 1 são sobrescritos, por causa de a5 e a8 tinham sido removidos. 
 A fila não perde sentido, pois é tratada como circular, 
 então, mesmo que o último elemento ocupe a posição 0, o início ocupa a 1, então 0 será lida por último
 
 
 2) 
-B) Quando inicio valer 0, o programa faria inicio apontar para o índice -1 (que não existe). Com isso, o programa entra em 
+B) Quando inicio valer 0, o programa faria inicio apontar para o índice -1 (que não existe), pois -1 % 4 = -1 (em C). Com isso, o programa entra em 
 comportamento indeterminado, visto que a posição gravada não deveria ser acessada.
 
 C) Não, pois a estrutura Fila exige que toda inserção seja feita no final.
+
+3)
+B) Precisa ter capacidade = n. A fila fica cheia, mas nenhuma inserção ocorre com a fila cheia, pois todas elas só ocorrem 
+imediatamente após uma remoção
+C) O(k * (n-1)) = O(n * k)?
+a lista sequencial é mais custosa, pois cada remoção custa O(n), com custo total de O(n^2 * k). Por isso, a fila é mais adequada
