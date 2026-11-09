@@ -59,6 +59,8 @@ int Fila_vazia(Fila* fi);
    cheia. Custo O(1). */
 int insere_Fila(Fila* fi, struct aluno al);
 
+int fura_Fila(Fila* fi, struct aluno al);
+
 /* Remove o elemento do inicio da fila. Falha se a fila for invalida
    ou estiver vazia. Custo O(1). */
 int remove_Fila(Fila* fi);

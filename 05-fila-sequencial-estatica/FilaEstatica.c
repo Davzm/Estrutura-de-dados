@@ -110,3 +110,16 @@ int consulta_Fila(Fila* fi, struct aluno *al) {
     *al = fi->dados[fi->inicio];
     return 1;
 }
+
+//============================================================================================================//
+
+int fura_Fila(Fila* fi, struct aluno al){
+    if(fi == NULL) return 0;
+    if(Fila_cheia(fi)) return 0;
+
+    fi->dados[fi->final] = al;              
+    fi->inicio = fi->final;
+    fi->qtd++;
+
+    return 1;
+}

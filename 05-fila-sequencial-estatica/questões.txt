@@ -1,0 +1,41 @@
+Questões que não necessitam de código estarão aqui:
+
+1) 
+Fila *fi = cria_Fila(4);
+insere_Fila(fi, a5);
+insere_Fila(fi, a8);
+insere_Fila(fi, a3);
+remove_Fila(fi);
+insere_Fila(fi, a9);
+insere_Fila(fi, a7);
+insere_Fila(fi, a1);
+remove_Fila(fi);
+insere_Fila(fi, a6);
+consulta_Fila(fi, &al);
+
+A) 
+
+1 - return 1; inicio 0; final 1; qtd 1; 
+2 - return 1; inicio 0; final 2; qtd 2; 
+3 - return 1; inicio 0; final 3; qtd 3; 
+4 - return 1; inicio 1; final 3; qtd 2; 
+5 - return 1; inicio 1; final 0; qtd 3; 
+6 - return 1; inicio 1; final 1; qtd 4; 
+7 - return 0; inicio 1; final 1; qtd 4; 
+8 - return 1; inicio 2; final 1; qtd 3; 
+9 - return 1; inicio 2; final 2; qtd 4; 
+10 - return 1; inicio 2; final 2; qtd 4;
+
+B) 
+    [3, 9, 7, 6]
+    a3
+
+C) os campos 0 e 1 são sobrescritos. A fila não perde sentido, pois é tratada como circular, 
+então, mesmo que o último elemento ocupe a posição 0, o início ocupa a 1, então 0 será lida por último
+
+
+2) 
+B) Quando inicio valer 0, o programa faria inicio apontar para o índice -1 (que não existe). Com isso, a referência do inicio guarda um
+lixo de memória
+
+C) Não, pois a estrutura Fila exige que toda inserção seja feita no final.
