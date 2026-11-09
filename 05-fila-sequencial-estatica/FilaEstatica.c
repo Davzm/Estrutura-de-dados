@@ -117,8 +117,11 @@ int fura_Fila(Fila* fi, struct aluno al){
     if(fi == NULL) return 0;
     if(Fila_cheia(fi)) return 0;
 
-    fi->dados[fi->final] = al;              
-    fi->inicio = fi->final;
+    int pos = fi->inicio -1;
+    if(pos < 0) pos = fi->capacidade -1;
+    
+    fi->dados[pos] = al;
+    fi->inicio = pos;
     fi->qtd++;
 
     return 1;

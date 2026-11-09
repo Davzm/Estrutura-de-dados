@@ -74,18 +74,20 @@ int main(void) {
 
     fi = cria_Fila(5);
     printf("Teste de fura fila com fila vazia: %d (esperado 1)\n", fura_Fila(fi, mk(40, "Sophia")));
-    insere_Fila(fi, mk(10, "Davi"));
+    imprime("fura fila vazia || mat = 40", fi);
 
     libera_Fila(fi);
+
     fi = cria_Fila(3);
     insere_Fila(fi, mk(20, "Matheus"));
-
     printf("Teste de fura fila como inicio = 0: %d (esperado 1)\n", fura_Fila(fi, mk(30, "Rafael")));
+
+    imprime("fura fila inicio = 0 || mat = 30", fi);
     insere_Fila(fi, mk(50, "Patricia"));
 
     printf("Teste fura fila com fila cheia: %d (esperado 0) \n", fura_Fila(fi, mk(60, "Otavio")));
-
-
+    imprime("fura fila cheia || mat = 60", fi);
+    libera_Fila(fi);
 
     return 0;
 }
