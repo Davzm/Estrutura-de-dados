@@ -1,0 +1,26 @@
+Questões que não necessitam de código estarão aqui:
+
+1) Fila *fi = cria_Fila(4);
+insere_Fila(fi, a5);
+insere_Fila(fi, a8);
+insere_Fila(fi, a3);
+remove_Fila(fi);
+insere_Fila(fi, a9);
+insere_Fila(fi, a7);
+insere_Fila(fi, a1);
+remove_Fila(fi);
+insere_Fila(fi, a6);
+consulta_Fila(fi, &al);
+
+A) 
+
+1 - return 1; 
+2 -
+3 -
+4 -
+5 -
+6 -
+7 - 
+8 -
+9 -
+10 -
