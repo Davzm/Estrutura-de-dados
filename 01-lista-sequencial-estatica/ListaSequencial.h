@@ -18,11 +18,14 @@
 #define MAX 100
 
 /* Tipo do elemento armazenado na lista. */
+
+/*
 struct aluno {
     int   matricula;
     char  nome[30];
     float n1, n2, n3;
 };
+*/
 
 /* Tipo opaco: o usuario da biblioteca so pode declarar Lista *li. */
 typedef struct lista Lista;

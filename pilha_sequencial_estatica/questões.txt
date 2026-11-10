@@ -1,0 +1,36 @@
+4) 
+A) 
+Início = {}
+I
+{1}
+I
+{2,1}
+R
+{1}
+I
+{3,1}
+I
+{4,3,1}
+R
+{3,1}
+R
+{1}
+R
+{}
+Saída = 2,4,3,1
+sequência = IIRIIRRR
+
+B) 3,1,4,2 Não é possível. Para 3 ser o primeiro removido, precisamos inserir 1,2,3 então 2 ficará acima de 1, portanto para 1 sair, 2 tem que sair antes, quebrando, assim
+a sequência desejada pela questão.
+
+IIIR
+
+D) A minha função não precisou de uma pilha, pois o conteúdo da pilha não importa, apenas a sequência de operações. 
+Usei uma variável que conta a quantidade de elementos na pilha. Assim, se ocorrer uma remoção com 0 elementos, o código retorna 0
+
+5)
+A)  remoção da definição da struct aluno;
+    ajuste na definição da struct pilha para receber char* dados no lugar de aluno *dados
+    remoção de struct aluno de todas as funções e substituição por char ou char*
+
+    Enquanto libera_Pilha, tamanho_Pilha, Pilha_cheia, Pilha_vazia e remove_Pilha não mudaram, pois não dependem do tipo do elemento

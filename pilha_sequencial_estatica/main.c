@@ -22,6 +22,35 @@ static void mostra(const char *rotulo, Pilha *pi) {
     printf("\n");
 }
 
+int sequencia_valida(const char *s){
+    if(s == NULL)return 0;
+    char x;
+    int i = 0, qtd_elem = 0;
+    x = s[i];
+
+    while(x == 'R' || x == 'I'){
+        if(x == 'R'){
+            if(qtd_elem == 0){
+                return 0;
+            }
+
+            qtd_elem--;
+        }
+
+        if(x == 'I'){ 
+            qtd_elem++;
+        }
+        i++;
+        x = s[i];
+    }
+
+
+    if(qtd_elem != 0) return 0;
+    if(s[i] != '\0')return 0;
+
+    return 1;
+}
+
 int main(void) {
     Pilha *pi;
     struct aluno al;
@@ -58,5 +87,16 @@ int main(void) {
     printf("consulta em pilha vazia = %d\n", consulta_topo_Pilha(pi, &al));
 
     libera_Pilha(pi);
+
+    int sequencia = sequencia_valida("IRRI");
+    printf("Teste de sequência válida (IRRI) = %d (esperado 0)\n", sequencia);
+    
+    sequencia = sequencia_valida("IIRRIR");
+    printf("Teste de sequência válida (IIRRIR) = %d (esperado 1)\n", sequencia);
+
+    sequencia = sequencia_valida("IRX");
+    printf("%d (esperado 0)\n", sequencia);
+
+
     return 0;
 }

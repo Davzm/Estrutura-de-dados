@@ -1,13 +1,13 @@
 CC     = gcc
 CFLAGS = -Wall -Wextra -std=c11
 
-teste: PilhaSequencial.o main.o
-	$(CC) $(CFLAGS) -o teste PilhaSequencial.o main.o
+teste: pilha_sequencial.o main.o
+	$(CC) $(CFLAGS) -o teste pilha_sequencial.o main.o
 
-PilhaSequencial.o: PilhaSequencial.c PilhaSequencial.h
-	$(CC) $(CFLAGS) -c PilhaSequencial.c
+PilhaSequencial.o: pilha_sequencial.c pilha_sequencial.h
+	$(CC) $(CFLAGS) -c pilha_sequencial.c
 
-main.o: main.c PilhaSequencial.h
+main.o: main.c pilha_sequencial.h
 	$(CC) $(CFLAGS) -c main.c
 
 clean:

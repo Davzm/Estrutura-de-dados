@@ -11,7 +11,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "pilha_sequencial.h"
-#include "../01-lista-sequencial-estatica/ListaSequencial.h"
 
 /* qtd:        quantos elementos estao na pilha.
    capacidade: tamanho do vetor dados, escolhido em cria_Pilha.
@@ -104,3 +103,8 @@ int consulta_topo_Pilha(Pilha* pi, struct aluno *al) {
     *al = pi->dados[pi->qtd - 1];         /* topo: ultima posicao ocupada */
     return 1;
 }
+
+
+//=========================================================================================//
+
+

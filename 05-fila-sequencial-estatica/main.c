@@ -44,7 +44,7 @@ int josefo(int n, int k){
     if(n < 1 || k < 1) return -1;
     Fila *fi; 
     fi = cria_Fila(n);
-    if(cria_Fila(n) == NULL) return -1; 
+    if(fi == NULL) return -1; 
     struct aluno al;
     for(int i = 1; i <= n; i++){
         al.matricula = i;

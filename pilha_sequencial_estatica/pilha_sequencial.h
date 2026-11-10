@@ -68,4 +68,5 @@ int remove_Pilha(Pilha* pi);
    pilha for invalida ou estiver vazia. Custo O(1). */
 int consulta_topo_Pilha(Pilha* pi, struct aluno *al);
 
+
 #endif /* PILHA_SEQUENCIAL_H */
