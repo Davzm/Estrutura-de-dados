@@ -37,8 +37,8 @@ A)  remoção da definição da struct aluno;
 
 C) precisa ter a tamanho = strlen(expr)
 
-D) Usando exclusivamente a técnica do contador, não. Apeans daria certo se as comparações entre os caracteres fosse mantida, pois para '([)]', 
-se nenhuma comparação entre os caracteres de abertura e fechamento fosse feita, essa sequência seria aceita, mesmo não devendo ser.
+D) Não, pois, usando a técnica do contador não seria possível comparar os caracteres entre si, então a sequência ([)] 
+seria aceita, mesmo estando errada.
 
 6) 
 B)
@@ -56,3 +56,29 @@ retorno: 1   topo1: 4   topo2: 3   conteúdo: [10, 20 , 30 , 40 ,90]
 
 pilha 1: 10, 20, 30, 40
 pilha 2: 90 
+
+C)
+uma sequência de 5 inserções seguidas na mesma Pilha é aceita pela PilhaDupla, mas recusada pela Pilha comum.
+Não existe situação inversa, visto que as Pilhas separadas têm, cada uma, tamanho fixo = 4, 
+enquanto a PilhaDupla tem uma certa flexibilidade, pois uma Pilha pode ser maior que a outra, 
+contanto que o conjunto das duas tenha quantidade de elementos ≤ capacidade
+
+{ _ , _ , _ , _ , _ , _ , _ , _ } { _ , _ , _ , _ }{ _ , _ , _ , _ }
+
+
+D)
+PilhaDupla* cria_PilhaDupla(int capacidade) --> O(1)
+void libera_PilhaDupla(PilhaDupla* pd) --> O(1)
+
+int  tamanho_PilhaDupla(PilhaDupla* pd, int p) --> O(1)
+
+int  PilhaDupla_cheia(PilhaDupla* pd) --> O(1)
+
+int PilhaDupla_vazia(PilhaDupla* pd) --> O(1)
+
+int  insere_PilhaDupla(PilhaDupla* pd, int p, struct aluno al) --> O(1)
+int  remove_PilhaDupla(PilhaDupla* pd, int p) --> O(1)
+int  consulta_topo_PilhaDupla(PilhaDupla* pd, int p, struct aluno *al) --> O(1)
+
+É vantajosa quando se tem pouca memória disponível e é preciso otimizar ao máximo essa memória. 
+Além das duas pilhas serem acessadas de forma um tanto imprevisível
