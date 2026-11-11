@@ -1,6 +1,7 @@
 #include "PilhaChar.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct pilha {
     int qtd;
@@ -90,7 +91,7 @@ int consulta_topo_Pilha(Pilha* pi, char *c) {
 
 int verifica_delimitadores(const char *expr){
     if(expr == NULL)return 0;
-    int capacidade = sizeof(expr);
+    int capacidade = strlen(expr);
     Pilha *pi;
     pi = cria_Pilha(capacidade);
     if(pi == NULL) return 0;
@@ -98,14 +99,46 @@ int verifica_delimitadores(const char *expr){
     char x;
     int i = 0, qtd_elem = 0;
     x = expr[i];
+    int caract_delimita = 0;
+    char topo_p;
 
-    while(x != '\0'){
-        if(x != '()[]{}'){
-            i++;
-            continue;
+    for(int i = 0; expr[i] != '\0'; i++){
+        x = expr[i];
+
+        if(x == '(' || x == '[' || x == '{'){
+            insere_Pilha(pi, x);
         }
-        
+
+        else if (x == ')' || x == ']' || x == '}'){
+            char topo_p;
+            
+            // Se a pilha estiver vazia ao tentar fechar, a expressao e invalida
+            if(!consulta_topo_Pilha(pi, &topo_p)){
+                libera_Pilha(pi);
+                return 0;
+            }
+
+            if((x == ')' && topo_p == '(') ||
+                (x == ']' && topo_p == '[') ||
+                (x == '}' && topo_p == '{')){
+                remove_Pilha(pi);
+            }else{
+                libera_Pilha(pi);
+                return 0;
+            }
+        }
     }
+
+    int retorno = Pilha_vazia(pi);
+    libera_Pilha(pi);
+    return retorno;
+    
 }
 
 
+/*
+        {[(      ||     )]}
+        {[(
+
+
+*/

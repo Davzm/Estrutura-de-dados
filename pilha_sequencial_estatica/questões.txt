@@ -34,3 +34,25 @@ A)  remoção da definição da struct aluno;
     remoção de struct aluno de todas as funções e substituição por char ou char*
 
     Enquanto libera_Pilha, tamanho_Pilha, Pilha_cheia, Pilha_vazia e remove_Pilha não mudaram, pois não dependem do tipo do elemento
+
+C) precisa ter a tamanho = strlen(expr)
+
+D) Usando exclusivamente a técnica do contador, não. Apeans daria certo se as comparações entre os caracteres fosse mantida, pois para '([)]', 
+se nenhuma comparação entre os caracteres de abertura e fechamento fosse feita, essa sequência seria aceita, mesmo não devendo ser.
+
+6) 
+B)
+
+Início: retorno: -   topo1: 0    topo2: 4    conteúdo: []
+
+retorno: 1   topo1: 1   topo2: 4   conteúdo: [10]
+retorno: 1   topo1: 1   topo2: 3   conteúdo: [10, _ , _ , _ ,90]
+retorno: 1   topo1: 2   topo2: 3   conteúdo: [10, 20 , _ , _ ,90]
+retorno: 1   topo1: 2   topo2: 2   conteúdo: [10, 20 , _ , 80 ,90]
+retorno: 1   topo1: 3   topo2: 2   conteúdo: [10, 20 , 30 , 80 ,90]
+retorno: 0   topo1: 3  topo2:  2  conteúdo: [10, 20 , 30 , 80 ,90]
+retorno: 1   topo1: 3   topo2: 3   conteúdo: [10, 20 , 30 , 80 ,90]
+retorno: 1   topo1: 4   topo2: 3   conteúdo: [10, 20 , 30 , 40 ,90]
+
+pilha 1: 10, 20, 30, 40
+pilha 2: 90 
